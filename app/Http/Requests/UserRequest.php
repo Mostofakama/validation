@@ -11,7 +11,7 @@ class UserRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,27 @@ class UserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+           'name' => 'required|string',
+           'email' => 'required|email',
+           'password' => 'required|alpha_num',
+           'city' => 'required|string',
+           'age' => 'required|numeric',
+        ];
+
+        
+    }
+    public function messages(){
+        return [
+            'name.required' => 'Your Name is required!',
+            'name.string' => 'Your Name must be string!',
+            'email.required' => 'Your email is required!',
+            'name.email' => 'Your email is not valid!',
+            'password.required' => 'Your password is required!', 
+            'password.alpha_num' => 'Your password must be alpha_num!',  
+            'city.required' => 'Your city is required!',  
+            'city.string' => 'Your city must be string!',  
+            'age.required' => 'Your age is required!',       
+            'age.numeric' => 'Your age must be numeric!',
         ];
     }
 }
